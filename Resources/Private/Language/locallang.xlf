@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-19T14:31:26Z" product-name="cabag_loginas">
+		<header/>
+		<body>
+			<trans-unit id="toolbar.header-default" xml:space="preserve">
+				<source>List of frontend users with same email:</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

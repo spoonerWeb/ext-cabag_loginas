@@ -3,7 +3,10 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('cabag_loginas') . 'Resources/PHP/Toolbar.php';
+if (TYPO3_MODE === 'BE') {
+	$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][] = \Cabag\CabagLoginas\Hook\ToolbarItemHook::class;
+}
+#$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('cabag_loginas') . 'Resources/PHP/Toolbar.php';
 
 $tempColumns = array(
 	'tx_cabagloginas_loginas' => array(

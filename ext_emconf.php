@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'title' => 'CAB Login As',
 	'description' => 'Within the backend you have a button in the fe_user table and in the upper right corner to quickly login as this fe user in frontend.',
 	'category' => 'be',
-	'version' => '2.0.0',
+	'version' => '2.1.0',
 	'state' => 'stable',
 	'uploadfolder' => TRUE,
 	'createDirs' => '',
@@ -26,7 +26,7 @@ $EM_CONF[$_EXTKEY] = array(
 		array(
 			'depends' =>
 				array(
-					'typo3' => '6.2.0-7.99.99',
+					'typo3' => '7.2.0-7.99.99',
 				),
 			'conflicts' =>
 				array(),
