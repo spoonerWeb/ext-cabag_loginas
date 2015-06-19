@@ -120,8 +120,7 @@ class ToolbarItemHook implements ToolbarItemInterface {
 		$users = $this->getDatabaseConnection()->exec_SELECTgetRows(
 			'*',
 			'fe_users',
-			#'email = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($email, 'fe_users') . ' AND disable = 0 AND deleted = 0',
-			'disable = 0 AND deleted = 0',
+			'email = ' . $GLOBALS['TYPO3_DB']->fullQuoteStr($email, 'fe_users') . ' AND disable = 0 AND deleted = 0',
 			'',
 			'',
 			'15'
