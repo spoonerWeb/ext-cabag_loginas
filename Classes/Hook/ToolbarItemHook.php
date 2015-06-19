@@ -69,7 +69,7 @@ class ToolbarItemHook implements ToolbarItemInterface {
 	 */
 	public function getItem() {
 		$title = $this->getLanguageService()->sL('LLL:EXT:cabag_loginas/Resources/Private/Language/locallang_db.xml:fe_users.tx_cabagloginas_loginas', TRUE);
-		return IconUtility::getSpriteIcon('status-user-backend', array('title' => $title));
+		return '<span class="fa fa-user" title="' . $title . '"> </span>';
 	}
 
 	/**
