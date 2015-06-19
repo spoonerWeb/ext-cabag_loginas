@@ -14,6 +14,9 @@ namespace Cabag\CabagLoginas\Hook;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\HttpUtility;
+
 /**
  * Frontend hook to support redirection.
  *
@@ -33,12 +36,12 @@ class PostUserLookupHook {
 	 * @return void
 	 */
 	public function postUserLookUp($params, &$pObj) {
-		if (TYPO3_MODE == 'FE') {
+		if (TYPO3_MODE === 'FE') {
 			if (!empty($GLOBALS['TSFE']->fe_user->user['uid'])) {
-				$cabagLoginasData = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('Cabag\CabagLoginas\Hook\ToolbarItemHook');
+				$cabagLoginasData = GeneralUtility::_GP('Cabag\CabagLoginas\Hook\ToolbarItemHook');
 				if (!empty($cabagLoginasData['redirecturl'])) {
 					$partsArray = parse_url(rawurldecode($cabagLoginasData['redirecturl']));
-					if (strpos(\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), $partsArray['scheme'] . '://' . $partsArray['host'] . '/') === FALSE) {
+					if (strpos(GeneralUtility::getIndpEnv('TYPO3_SITE_URL'), $partsArray['scheme'] . '://' . $partsArray['host'] . '/') === FALSE) {
 						$partsArray['query'] .= '&FE_SESSION_KEY=' . rawurlencode(
 							$pObj->id . '-' . md5($pObj->id . '/' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'])
 						);
@@ -51,7 +54,7 @@ class PostUserLookupHook {
 						(isset($partsArray['path']) ? $partsArray['path'] : '') .
 						(isset($partsArray['query']) ? '?' . $partsArray['query'] : '') .
 						(isset($partsArray['fragment']) ? '#' . $partsArray['fragment'] : '');
-					\TYPO3\CMS\Core\Utility\HttpUtility::redirect($redirectUrl);
+					HttpUtility::redirect($redirectUrl);
 				}
 			}
 		}
