@@ -20,6 +20,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Backend\Utility\IconUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 class ToolbarItemHook implements ToolbarItemInterface {
 
@@ -138,8 +139,12 @@ class ToolbarItemHook implements ToolbarItemInterface {
 		foreach ($users as $user) {
 			$link = $this->getHref($user);
 			$linkText = $this->formatLinkText($user, $this->extensionConfiguration['defLinkText']);
+			$title = sprintf(
+				LocalizationUtility::translate('title.linkprefix', 'cabag_loginas'),
+				$user['username']
+			);
 
-			$linkedUsers[] = '<a href="' . $link . '" title="' . $user['name'] . '" target="_blank">' . $userIcon . $linkText . '</a>';
+			$linkedUsers[] = '<a href="' . $link . '" title="' . $title . '" target="_blank">' . $userIcon . $linkText . '</a>';
 		}
 
 		return $linkedUsers;
@@ -232,6 +237,10 @@ class ToolbarItemHook implements ToolbarItemInterface {
 			)
 		);
 		$link = $this->getHref($user);
+		$title = sprintf(
+			LocalizationUtility::translate('title.linkprefix', 'cabag_loginas'),
+			$user['username']
+		);
 		$content = '<a class="btn btn-default" title="' . $title . '" href="' . $link . '" target="_blank">' . $switchUserIcon . '</a>';
 
 		return $content;

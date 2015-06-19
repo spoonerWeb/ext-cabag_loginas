@@ -6,6 +6,9 @@
 			<trans-unit id="toolbar.header-default" xml:space="preserve">
 				<source>List of frontend users with same email:</source>
 			</trans-unit>
+			<trans-unit id="title.linkprefix" xml:space="preserve">
+				<source>Login as %s</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
