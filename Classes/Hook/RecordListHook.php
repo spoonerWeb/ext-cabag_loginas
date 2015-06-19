@@ -14,7 +14,10 @@ namespace Cabag\CabagLoginas\Hook;
  * The TYPO3 project - inspiring people to share!
  */
 
-class RecordListHook implements \TYPO3\CMS\Recordlist\RecordList\RecordListHookInterface {
+use TYPO3\CMS\Recordlist\RecordList\RecordListHookInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+class RecordListHook implements RecordListHookInterface {
 
 	/**
 	 * @var $loginAsObj \Cabag\CabagLoginas\Hook\ToolbarItemHook
@@ -22,34 +25,54 @@ class RecordListHook implements \TYPO3\CMS\Recordlist\RecordList\RecordListHookI
 	public $loginAsObj = NULL;
 
 	public function __construct() {
-		$this->loginAsObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Cabag\CabagLoginas\Hook\ToolbarItemHook');
+		$this->loginAsObj = GeneralUtility::makeInstance('Cabag\CabagLoginas\Hook\ToolbarItemHook');
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $row
+	 * @param array $cells
+	 * @param object $parentObject
+	 * @return array
+	 */
 	public function makeClip($table, $row, $cells, &$parentObject) {
 		return $cells;
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $row
+	 * @param array $cells
+	 * @param object $parentObject
+	 * @return array
+	 */
 	public function makeControl($table, $row, $cells, &$parentObject) {
-		if ($table == 'fe_users') {
-			$tempcells = array();
-			foreach ($cells as $key => $value) {
-				if (strpos($value, 'clear.gif') === FALSE) {
-					$tempcells[$key] = $value;
-				}
-			}
-			$cells = $tempcells;
-			$loginas = $this->loginAsObj->getLoginAsIconInTable($row);
-			// moveRight is only used for pages, therefore we use it here
-			$cells['moveRight'] = $loginas;
+		if ($table === 'fe_users') {
+			$loginAs = $this->loginAsObj->getLoginAsIconInTable($row);
+			$cells['secondary']['loginAs'] = $loginAs;
 		}
 
 		return $cells;
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $currentIdList
+	 * @param array $headerColumns
+	 * @param object $parentObject
+	 * @return array
+	 */
 	public function renderListHeader($table, $currentIdList, $headerColumns, &$parentObject) {
 		return $headerColumns;
 	}
 
+	/**
+	 * @param string $table
+	 * @param array $currentIdList
+	 * @param array $cells
+	 * @param object $parentObject
+	 * @return array
+	 */
 	public function renderListHeaderActions($table, $currentIdList, $cells, &$parentObject) {
 		return $cells;
 	}

@@ -221,6 +221,24 @@ class ToolbarItemHook implements ToolbarItemInterface {
 	}
 
 	/**
+	 * @param $user
+	 * @param string $title
+	 * @return string
+	 */
+	public function getLoginAsIconInTable($user, $title = '') {
+		$switchUserIcon = IconUtility::getSpriteIcon(
+			'actions-system-backend-user-emulate',
+			array(
+				'style' => 'background-position: 0 10px;'
+			)
+		);
+		$link = $this->getHref($user);
+		$content = '<a class="btn btn-default" title="' . $title . '" href="' . $link . '" target="_blank">' . $switchUserIcon . '</a>';
+
+		return $content;
+	}
+
+	/**
 	 * @param integer $pageId
 	 *
 	 * @return string
