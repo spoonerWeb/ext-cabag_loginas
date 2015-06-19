@@ -1,8 +1,13 @@
 <ul class="dropdown-list" data-count="{count}">
-	<li class="dropdown-header"><f:translate key="toolbar.header-default" /></li>
 	<f:if condition="{users}">
-		<f:for each="{users}" as="user">
-			<li>{user -> f:format.raw()}</li>
-		</f:for>
+		<f:then>
+			<li class="dropdown-header"><f:translate key="toolbar.header-default" /></li>
+			<f:for each="{users}" as="user">
+				<li>{user -> f:format.raw()}</li>
+			</f:for>
+		</f:then>
+		<f:else>
+			<li class="dropdown-header"><f:translate key="toolbar.header-nousers" /></li>
+		</f:else>
 	</f:if>
 </ul>

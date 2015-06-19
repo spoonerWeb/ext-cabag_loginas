@@ -4,7 +4,10 @@
 		<header/>
 		<body>
 			<trans-unit id="toolbar.header-default" xml:space="preserve">
-				<source>List of frontend users with same email:</source>
+				<source>List of frontend users with your email:</source>
+			</trans-unit>
+			<trans-unit id="toolbar.header-nousers" xml:space="preserve">
+				<source>No frontend users found with your email</source>
 			</trans-unit>
 			<trans-unit id="title.linkprefix" xml:space="preserve">
 				<source>Login as %s</source>
